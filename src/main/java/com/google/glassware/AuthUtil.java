@@ -21,11 +21,9 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
 import com.google.api.client.json.jackson2.JacksonFactory;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,13 +44,9 @@ public class AuthUtil {
    * Creates and returns a new {@link AuthorizationCodeFlow} for this app.
    */
   public static AuthorizationCodeFlow newAuthorizationCodeFlow() throws IOException {
-    FileInputStream authPropertiesStream =
-        new FileInputStream("./src/main/resources/oauth.properties");
-    Properties authProperties = new Properties();
-    authProperties.load(authPropertiesStream);
 
-    String clientId = authProperties.getProperty("client_id");
-    String clientSecret = authProperties.getProperty("client_secret");
+    String clientId = "42777248345-vc227fn02oi11p9r1d2c1se4sd84fa8q.apps.googleusercontent.com";
+    String clientSecret = "Cp8_uM89o7zPafaY6stzoHgo";
 
     return new GoogleAuthorizationCodeFlow.Builder(new NetHttpTransport(), new JacksonFactory(),
         clientId, clientSecret, Collections.singleton(GLASS_SCOPE)).setAccessType("offline")
